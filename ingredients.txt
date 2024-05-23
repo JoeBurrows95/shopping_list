@@ -1,0 +1,9 @@
+Potatoes;fresh
+This Isn't Sausages;chilled
+Baked Beans;ambient
+Mushy Peas;ambient
+Curry Sauce;ambient
+GF Pasta;ambient
+Primula;chilled
+Fiery Cheese Blend;chilled
+Grated Cheese;chilled
