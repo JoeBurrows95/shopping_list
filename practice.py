@@ -1,13 +1,13 @@
 def category_sort(ingredient):
-    if ingredient[1] == 'fresh':
+    if ingredient[-1] == 'fresh':
         return 1
-    elif ingredient[1] == 'chilled':
+    elif ingredient[-1] == 'chilled':
         return 2
-    elif ingredient[1] == 'ambient':
+    elif ingredient[-1] == 'ambient':
         return 3
-    elif ingredient[1] == 'drink':
+    elif ingredient[-1] == 'drink':
         return 4
-    elif ingredient[1] == 'frozen':
+    elif ingredient[-1] == 'frozen':
         return 5
 
 with open('ingredients.txt', "r") as ingredients_file:
