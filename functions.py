@@ -1,11 +1,4 @@
-from classes import Meal, Ingredient
-
-# def read_meal_data(meals_text_file):
-#     with open(meals_text_file, "r") as text_file:
-#         meal_data = text_file.read().split("\n")
-
-#     meal_list = []
-
+from classes import Meal
 
 # Lists the meals available for the user to choose from
 def list_meals(text_file):
@@ -85,35 +78,6 @@ def list_ingredients(selected_meal):
 
     print(ingredient_list)
 
-# def add_meal(meal_name, text_file):
-    
-#     meal = Meal(meal_name)
-
-#     # while loop to add all ingredients, breaks when the user enters 'N'
-#     while True:
-        
-#         ingredient = input("Ingredient: ")
-
-#         measure = input("Measurement Unit (n, g, ml): ")
-#         quantity = int(input("Quantity: "))
-
-#         add_another = input("Add another ingredient? Enter 'N' if that's \
-# all of them, and press enter if there's more:\n")
-#         if add_another == "N":
-#             break
-
-#         meal.ingredients += f"{ingredient}-{quantity}-{measure};"
-
-
-#         # String with the meal name followed by ingredients, all separated by ';'
-#     # to enable ease of splitting later
-#     string = f"\n{meal.name};{meal.ingredients}"
-
-#     # Adds the new meal to the meals.txt file
-#     with open(text_file, "a") as meals_file:
-#         meals_file.write(string)
-    
-#     print("This meal has now been added to the list of meals.")
 
 # Enables the user to add a meal to the meal list 
 def add_meal(meal_name, text_file):
@@ -139,8 +103,12 @@ Category:
 """).lower()
         # NEED TO ADD DEFENSIVE PROGRAMMING FOR AN INVALID ENTRY
 
+        # Ingredients are captured in the format needed for being added
+        # to meals.txt text file
         meal.ingredients += f"{ingredient}-{quantity}-{measure};"
 
+        # Calls the add_ingredient function to add ingredient and category
+        # to the ingredients.txt text file
         add_ingredient(ingredient, category, "ingredients.txt")
 
         add_another = input("Add another ingredient? Enter 'N' if that's \
@@ -160,8 +128,13 @@ all of them, and press enter if there's more:\n")
     print("This meal has now been added to the list of meals.")
 
 
+# Adds a new ingredient and its category to 'ingredients.txt' text file
 def add_ingredient(ingredient, category, text_file):
+    
+    # Defensive programming for if the text file doesn't exist yet
     try:
+        # Splits ingredients from the text file in order to check if the new
+        # ingredient is already there
         with open(text_file, "r") as ingredient_file:
             ingredients = ingredient_file.read().split('\n')
             for item in ingredients:
@@ -169,33 +142,21 @@ def add_ingredient(ingredient, category, text_file):
                 if item[0] == ingredient and item[1] == category:
                     return
             
+        # Adds the ingredient to the bottom of the text file if it doesn't
+        # already exist
         with open(text_file, "a") as ingredient_file:
             ingredient_file.write(f"\n{ingredient};{category}")
 
+    # If the file doesn't exist already, no need to check if the ingredient 
+    # is already there, so we just create the file and add the ingredient
     except FileNotFoundError:
         with open(text_file, "w") as ingredient_file:
             ingredient_file.write(f"{ingredient};{category}")
             return
         
     
-
-    
-
-
-    # for item in ingredients:
-    #     item.split(';')
-    #     if item[0] == ingredient:
-    #         return
-    
-    # with open(text_file, "a") as ingredient_file:
-    #     ingredient_file.write(f"\n{ingredient};{category}")
-        
-
-        
-
-
-            
-
+# Function to be used with the sort() method to put ingredients in order
+# of category on the shopping list
 def category_sort(ingredient):
     if ingredient[-1] == 'fresh':
         return 1
@@ -209,6 +170,7 @@ def category_sort(ingredient):
         return 5
     else:
         return 10
+
 
 # Adds ingredients from the selected meal to the shopping list
 def add_to_shopping_list(shopping_list, selected_meal):
@@ -248,44 +210,10 @@ def add_to_shopping_list(shopping_list, selected_meal):
         else:
             shopping_list.append(ingredient)
     
-    return shopping_list
-
-
-def order_shopping_list(shopping_list, text_file):
-    
-    with open(text_file, "r") as ingredients_file:
-        ingredients = ingredients_file.read().split('\n')
-
-        ingredient_list = []
-
-        for ingredient in ingredients:
-            ingredient = ingredient.split(';')
-            ingredient_list.append(ingredient)  
-            
-            
-    shopping_list.sort()
-
-    for item in shopping_list:
-        item.pop()
-
-    return shopping_list
-
-    #     # Loops through the shopping list items and displays them in a user-friendly 
-    # # format
-    # for ingredient in shopping_list:
-    #     ingredient = ingredient.split('-')
-    #     if ingredient[2] == 'n':
-    #         ingredient[2] = ''
-        
-    #     # Need to work out how to get the formatting consistently aligned
-    #     # disp_str += f"{ingredient[0]}\t\t {ingredient[1]}{ingredient[2]}\n"
-    #     disp_str += f"{ingredient[1]}{ingredient[2]}\t{ingredient[0]}\n"
-
-    # print(disp_str)   
+    return shopping_list  
 
 
 # Displays the user's up to date shopping list
-
 # ADD HANDLING FOR IF THE SHOPPING LIST IS EMPTY
 def display_shopping_list(shopping_list, text_file):
     
@@ -293,8 +221,8 @@ def display_shopping_list(shopping_list, text_file):
 
     ordered_shopping_list = []
 
-    # Loops through the shopping list items and displays them in a user-friendly 
-    # format
+    # Loops through the shopping list items and adds them to the 
+    # ordered_shopping_list 
     for ingredient in shopping_list:
         ingredient = ingredient.split('-')
         if ingredient[2] == 'n':
@@ -302,6 +230,8 @@ def display_shopping_list(shopping_list, text_file):
         
         ordered_shopping_list.append(ingredient)
 
+    # Reads the ingredients.txt text file and adds all the ingredients to
+    # ingredient_list
     with open(text_file, "r") as ingredients_file:
         ingredients = ingredients_file.read().split('\n')
 
@@ -311,14 +241,17 @@ def display_shopping_list(shopping_list, text_file):
             ingredient = ingredient.split(';')
             ingredient_list.append(ingredient)
 
+    # Finds the ordered_shopping_list ingredient in the ingredient_list and 
+    # appends the ingredient's category in the ordered_shopping_list
     for i, item in enumerate(ordered_shopping_list):
         for ingredient in ingredient_list:
             if item[0] == ingredient[0]:
                 ordered_shopping_list[i].append(ingredient[1])
                 
-    
+    # Sorts the ordered_shopping_list by category
     ordered_shopping_list.sort(key=category_sort)
 
+    # Loops through the shopping list items and prints in a user-friendly format
     for i, ingredient in enumerate(ordered_shopping_list):
         if ingredient[-1] != ordered_shopping_list[i - 1][-1]:
             disp_str += f"\n---------------\n"
@@ -326,7 +259,7 @@ def display_shopping_list(shopping_list, text_file):
 
     print(disp_str)
         
-
+# Add an item to the shopping list
 def add_shopping_list_item(shopping_list):
 
     # LATER, ADD DEFENSIVE PROGRAMMING FOR IF THE INGREDIENT ALREADY EXISTS
@@ -347,6 +280,7 @@ Category:
 
     new_item = f"{ingredient}-{quantity}-{measure}"
 
+    # If the ingredient is new, it gets added to the 'ingredients.txt' text file
     add_ingredient(ingredient, category, "ingredients.txt")
 
     shopping_list.append(new_item)
@@ -354,24 +288,31 @@ Category:
     print("This item has been added to your shopping list.\n")
     return shopping_list
 
+
 # NEED TO ADD DEFENSIVE PROGRAMMING FOR IF THE LIST IS EMPTY
+# Edit the quantity of a given item in the shopping list
 def edit_item_quantity(shopping_list):
     enumerated_string = ""
 
+    # Creates a string of shopping list items which is enumerated
     for index, item in enumerate(shopping_list, 1):
         split = item.split('-')
         enumerated_string += f"{index}. {split[0]}\n"
 
     print("Which item would you like to edit?")
+    
     # ADD DEFENSIVE PROGRAMMING FOR IF A NUMBER ISN'T ENTERED
+    # User selects the item they want to edit from the enumerated string
     item_selection = int(input(enumerated_string))
 
+    # Finds the selected item in the shopping list
     for index, item in enumerate(shopping_list, 1):
         if index == item_selection:
             index -= 1
             break
 
     # ADD DEFENSIVE PROGRAMMING FOR IF IT ISN'T A NUMBER
+    # Quantity is updated in the shopping list
     new_quantity = int(input("Please enter the new quantity:\n"))
     
     split_item = shopping_list[index].split('-')
@@ -384,9 +325,11 @@ def edit_item_quantity(shopping_list):
     return shopping_list
 
 
+# Remove an item from the shopping list
 def remove_shopping_list_item(shopping_list):
     enumerated_string = ""
 
+    # Creates a string of shopping list items which is enumerated
     for index, item in enumerate(shopping_list, 1):
         split = item.split('-')
         enumerated_string += f"{index}. {split[0]}\n"
@@ -396,6 +339,7 @@ def remove_shopping_list_item(shopping_list):
     # ADD DEFENSIVE PROGRAMMING FOR IF A NUMBER ISN'T ENTERED
     item_selection = int(input(enumerated_string))
 
+    # Finds the selected item in the shopping list and removes it
     for index, item in enumerate(shopping_list, 1):
         if index == item_selection:
             shopping_list.remove(item)

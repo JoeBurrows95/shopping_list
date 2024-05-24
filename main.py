@@ -1,12 +1,8 @@
 import functions
-from classes import Meal
 
 def main():
 
-
-    # with open("meals.txt", "r") as meals_file:
-    #     meal = (meals_file.read())
-
+    # Menu options for the user to choose the action they want to complete
     options = """What would you like to do?
 1. View meals and their ingredients
 2. Add a meal to the meal list
@@ -17,6 +13,7 @@ def main():
 0. Exit
 """
 
+    # Options for how user can edit the shopping list if they've opted to do so
     edit_options = """How would you like to edit the shopping list?
 1. Add an item
 2. Edit the quantity of an item
@@ -25,14 +22,17 @@ def main():
 
 """
 
-
+    # Shopping list starts as an empty list, ready to be added to by the user
     shopping_list = []
 
     print("Welcome to the Jollie Shopping List generator!")
 
+    # Loops user back to the menu options after each action. Can be broken by
+    # the user entering 0 to exit
     while True:
         option_selection = input(options)
         
+        # Casts the option selection to an integer, with defensive programming
         try:
             option_selection = int(option_selection)
         except ValueError:
@@ -65,6 +65,8 @@ to your shopping list.\n")
             meal_name = input("Please enter the name of the meal:\n")
 
             functions.add_meal(meal_name, "meals.txt")
+            
+            # Lists all meals after adding the new one, to show it's added
             functions.list_meals("meals.txt")  
 
 
@@ -81,15 +83,15 @@ to your shopping list.\n")
             shopping_list = functions.add_to_shopping_list(shopping_list, meal_selection)
             print(f"The ingredients for the selected meal have been added \
 to your shopping list.\n")
-            # functions.display_shopping_list(shopping_list)
 
-
+        # View shopping list
         elif option_selection == 4:
             functions.display_shopping_list(shopping_list, 'ingredients.txt')
 
             input("\n\nPress enter to return to the main menu\n")
 
 
+        # Edit shopping list
         elif option_selection == 5:
             # NEED TO ADD IN DEFENSIVE PROGRAMMING FOR IF A NUMBER ISN'T ENTERED
             # OR IF AN INVALID NUMBER IS ENTERED
