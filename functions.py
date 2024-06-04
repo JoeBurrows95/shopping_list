@@ -303,7 +303,13 @@ def edit_item_quantity(shopping_list):
     
     # ADD DEFENSIVE PROGRAMMING FOR IF A NUMBER ISN'T ENTERED
     # User selects the item they want to edit from the enumerated string
-    item_selection = int(input(enumerated_string))
+    while True:
+        try:
+            item_selection = int(input(enumerated_string))
+            break
+        except ValueError:
+            print("Please enter a numeric value")
+            continue
 
     # Finds the selected item in the shopping list
     for index, item in enumerate(shopping_list, 1):
