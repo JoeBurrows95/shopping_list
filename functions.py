@@ -28,8 +28,15 @@ def list_meals(text_file):
 
 # Allows the user to select a meal to add to add to the shopping list
 def select_meal(meal_list, text_file):
-    selection = int(input("Choose a meal by entering the corresponding number. \
+    
+    while True:
+        try:
+            selection = int(input("Choose a meal by entering the corresponding number. \
 Enter '0' to return to the main menu:\n"))
+            break
+        except ValueError:
+            print("Please enter a numeric value")
+            continue
 
     # Loops through meal_list to find the meal matching the number entered
     for n, meal_name in enumerate(meal_list, 1):
@@ -211,7 +218,6 @@ def add_to_shopping_list(shopping_list, selected_meal):
 
 
 # Displays the user's up to date shopping list
-# ADD HANDLING FOR IF THE SHOPPING LIST IS EMPTY
 def display_shopping_list(shopping_list, text_file):
     
     if shopping_list:
@@ -263,7 +269,6 @@ def display_shopping_list(shopping_list, text_file):
 # Add an item to the shopping list
 def add_shopping_list_item(shopping_list):
 
-    # LATER, ADD DEFENSIVE PROGRAMMING FOR IF THE INGREDIENT ALREADY EXISTS
     ingredient = input("Ingredient: ")
 
     measure = input("Measurement Unit (n, g, ml): ")
@@ -281,7 +286,7 @@ Category:
 
     new_item = f"{ingredient}-{quantity}-{measure}"
 
-    # If the ingredient is new, it gets added to the 'ingredients.txt' text file
+    # If the ingredient is new, this function adds it to the 'ingredients.txt' text file
     add_ingredient(ingredient, category, "ingredients.txt")
 
     shopping_list.append(new_item)
@@ -290,9 +295,13 @@ Category:
     return shopping_list
 
 
-# NEED TO ADD DEFENSIVE PROGRAMMING FOR IF THE LIST IS EMPTY
 # Edit the quantity of a given item in the shopping list
 def edit_item_quantity(shopping_list):
+    
+    if not shopping_list:
+        print("\nThere are no items to edit in the shopping list.\n")
+        return
+    
     enumerated_string = ""
 
     # Creates a string of shopping list items which is enumerated
@@ -317,9 +326,15 @@ def edit_item_quantity(shopping_list):
             index -= 1
             break
 
-    # ADD DEFENSIVE PROGRAMMING FOR IF IT ISN'T A NUMBER
     # Quantity is updated in the shopping list
-    new_quantity = int(input("Please enter the new quantity:\n"))
+    while True:
+        try:
+            new_quantity = int(input("Please enter the new quantity:\n"))
+            break
+        except ValueError:
+            print("Please enter a numeric value")
+            continue
+    
     
     split_item = shopping_list[index].split('-')
     split_item[1] = new_quantity
@@ -333,6 +348,11 @@ def edit_item_quantity(shopping_list):
 
 # Remove an item from the shopping list
 def remove_shopping_list_item(shopping_list):
+    
+    if not shopping_list:
+        print("\nThere are no items to edit in the shopping list.\n")
+        return
+    
     enumerated_string = ""
 
     # Creates a string of shopping list items which is enumerated
@@ -342,8 +362,13 @@ def remove_shopping_list_item(shopping_list):
 
     print("Which item would you like to remove?")
 
-    # ADD DEFENSIVE PROGRAMMING FOR IF A NUMBER ISN'T ENTERED
-    item_selection = int(input(enumerated_string))
+    while True:
+        try:
+            item_selection = int(input(enumerated_string))
+            break
+        except ValueError:
+            print("Please enter a numeric value")
+            continue   
 
     # Finds the selected item in the shopping list and removes it
     for index, item in enumerate(shopping_list, 1):

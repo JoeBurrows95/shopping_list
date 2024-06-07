@@ -39,7 +39,6 @@ def main():
             print("Please enter a numeric value")
             continue
 
-
         # View meals and their ingredients
         if option_selection == 1:
             meal_list = functions.list_meals("meals.txt")
@@ -107,9 +106,12 @@ to your shopping list.\n")
                 shopping_list = functions.remove_shopping_list_item(shopping_list)
 
             elif edit_choice ==4:
-                shopping_list = functions.remove_shopping_list_item(shopping_list)
-                print("What would you like to replace it with?")
-                shopping_list = functions.add_shopping_list_item(shopping_list)
+                if shopping_list:
+                    shopping_list = functions.remove_shopping_list_item(shopping_list)
+                    print("What would you like to replace it with?")
+                    shopping_list = functions.add_shopping_list_item(shopping_list)
+                else:
+                    print("\nThere are no items to swap in the shopping list.\n")
         
 
         # Exit
