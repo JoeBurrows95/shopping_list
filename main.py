@@ -85,7 +85,8 @@ to your shopping list.\n")
 
         # View shopping list
         elif option_selection == 4:
-            functions.display_shopping_list(shopping_list, 'ingredients.txt')
+            displayable_shopping_list = functions.display_shopping_list(shopping_list, 'ingredients.txt')
+            print(displayable_shopping_list)
 
             input("\n\nPress enter to return to the main menu\n")
 
@@ -105,7 +106,7 @@ to your shopping list.\n")
             elif edit_choice == 3:
                 shopping_list = functions.remove_shopping_list_item(shopping_list)
 
-            elif edit_choice ==4:
+            elif edit_choice == 4:
                 if shopping_list:
                     shopping_list = functions.remove_shopping_list_item(shopping_list)
                     print("What would you like to replace it with?")
@@ -113,6 +114,12 @@ to your shopping list.\n")
                 else:
                     print("\nThere are no items to swap in the shopping list.\n")
         
+        
+        # ADD THE ABILITY TO ENTER THE EMAIL ADDRESS YOU WANT IT TO GO TO
+        # ADD DEFENSIVE PROGRAMMING FOR IF THE SHOPPING LIST IS EMPTY
+        elif option_selection == 6:
+            functions.email_shopping_list(shopping_list, 'ingredients.txt')
+            print("\nYour shopping list has now been emailed to you.\n")
 
         # Exit
         elif option_selection == 0:

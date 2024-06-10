@@ -1,5 +1,8 @@
 from classes import Meal
 
+import smtplib
+from email.message import EmailMessage
+
 # Lists the meals available for the user to choose from
 def list_meals(text_file):
     
@@ -261,7 +264,8 @@ def display_shopping_list(shopping_list, text_file):
                 disp_str += f"\n---------------\n"
             disp_str += f"{ingredient[1]}{ingredient[2]}\t{ingredient[0]}\n"
 
-        print(disp_str)
+        # print(disp_str)
+        return disp_str
     
     else:
         print("The shopping list is empty.")
@@ -380,4 +384,19 @@ def remove_shopping_list_item(shopping_list):
     return shopping_list
 
 
+def email_shopping_list(shopping_list, text_file):
+    
+    email_list = display_shopping_list(shopping_list, text_file)
 
+    msg = EmailMessage()
+    msg.set_content(email_list)
+
+    msg['Subject'] = "Shopping List"
+    msg['From'] = 'joebcoding@gmail.com'
+    msg['To'] = 'joeburrows95@gmail.com'
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    s.starttls()  # Secure the connection
+    s.login('joebcoding@gmail.com', 'xbhf qyls qwoh wlzq')  # Login to your Gmail account
+    s.send_message(msg)
+    s.quit()
