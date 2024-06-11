@@ -384,7 +384,7 @@ def remove_shopping_list_item(shopping_list):
     return shopping_list
 
 
-def email_shopping_list(shopping_list, text_file):
+def email_shopping_list(email_address, shopping_list, text_file):
     
     email_list = display_shopping_list(shopping_list, text_file)
 
@@ -393,7 +393,7 @@ def email_shopping_list(shopping_list, text_file):
 
     msg['Subject'] = "Shopping List"
     msg['From'] = 'joebcoding@gmail.com'
-    msg['To'] = 'joeburrows95@gmail.com'
+    msg['To'] = email_address
 
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()  # Secure the connection
