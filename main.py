@@ -116,8 +116,6 @@ to your shopping list.\n")
                     print("\nThere are no items to swap in the shopping list.\n")
         
         
-        # ADD THE ABILITY TO ENTER THE EMAIL ADDRESS YOU WANT IT TO GO TO
-        # ADD DEFENSIVE PROGRAMMING FOR IF THE SHOPPING LIST IS EMPTY
         elif option_selection == 6:
             if shopping_list:
 
