@@ -93,11 +93,20 @@ to your shopping list.\n")
 
 
         # Edit shopping list
+        # ADD ABILITY TO GO BACK IF SELECTING THIS WAS AN ERROR
         elif option_selection == 5:
-            # NEED TO ADD IN DEFENSIVE PROGRAMMING FOR IF A NUMBER ISN'T ENTERED
-            # OR IF AN INVALID NUMBER IS ENTERED
-            edit_choice = int(input(edit_options))
-
+            
+            while True:
+                try:
+                    edit_choice = int(input(edit_options))
+                    if edit_choice < 5:
+                        break
+                    else:
+                        print("\nYou didn't enter a valid option.\n")
+                except ValueError:
+                    print("\nPlease enter a numeric value\n")
+                    continue
+            
             if edit_choice == 1:
                 shopping_list = functions.add_shopping_list_item(shopping_list)
 
@@ -114,6 +123,9 @@ to your shopping list.\n")
                     shopping_list = functions.add_shopping_list_item(shopping_list)
                 else:
                     print("\nThere are no items to swap in the shopping list.\n")
+            
+            # else:
+            #     print("\nYou didn't enter a valid option.\n")
         
         
         elif option_selection == 6:
