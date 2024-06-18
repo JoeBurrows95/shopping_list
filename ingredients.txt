@@ -7,3 +7,16 @@ GF Pasta;ambient
 Primula;chilled
 Fiery Cheese Blend;chilled
 Grated Cheese;chilled
+Red Lentils;ambient
+Stock Cube;ambient
+Chopped Tomatoes;ambient
+Frozen Onion;frozen
+Frozen Sweetcorn;frozen
+Lazy Garlic;ambient
+Garam Masala;ambient
+Turmeric;ambient
+Cumin;ambient
+Curry Powder;ambient
+Paprika;ambient
+Coriander;ambient
+Mixed Herbs;ambient
