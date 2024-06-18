@@ -97,21 +97,21 @@ def add_meal(meal_name, text_file):
         
         ingredient = input("Ingredient: ")
 
-        measure = input("Measurement Unit (n, g, ml): ")
+        measure = input("Measurement Unit (n, g, ml, tsp): ")
         quantity = int(input("Quantity: "))
 
         category_options = ['fresh', 'chilled', 'ambient', 'drink', 'frozen']
 
         while True:
             category = input("""What category is this ingredient? Enter it as displayed:
-    Fresh
-    Chilled
-    Ambient
-    Drink
-    Frozen
+Fresh
+Chilled
+Ambient
+Drink
+Frozen
                             
-    Category: 
-    """).lower()
+Category: 
+""").lower()
             if category in category_options:
                 break
             else:
@@ -262,9 +262,13 @@ def display_shopping_list(shopping_list, text_file):
         for i, ingredient in enumerate(ordered_shopping_list):
             if ingredient[-1] != ordered_shopping_list[i - 1][-1]:
                 disp_str += f"\n---------------\n"
-            disp_str += f"{ingredient[1]}{ingredient[2]}\t{ingredient[0]}\n"
+            
+            # COULD THE CONDITIONAL BE DONE WITHIN THE F-STRING? NEED TO RESEARCH
+            if ingredient[2] == 'tsp':
+                disp_str += f"{ingredient[1]} {ingredient[2]}\t{ingredient[0]}\n"
+            else:
+                disp_str += f"{ingredient[1]}{ingredient[2]}\t{ingredient[0]}\n"
 
-        # print(disp_str)
         return disp_str
     
     else:
