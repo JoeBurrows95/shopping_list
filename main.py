@@ -21,6 +21,8 @@ def main():
 3. Remove an item
 4. Swap an item
 
+0. Return to main menu
+
 """
 
     # Shopping list starts as an empty list, ready to be added to by the user
@@ -123,6 +125,9 @@ to your shopping list.\n")
                     shopping_list = functions.add_shopping_list_item(shopping_list)
                 else:
                     print("\nThere are no items to swap in the shopping list.\n")
+
+            elif edit_choice == 0:
+                continue
             
             # else:
             #     print("\nYou didn't enter a valid option.\n")
