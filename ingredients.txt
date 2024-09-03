@@ -20,3 +20,6 @@ Curry Powder;ambient
 Paprika;ambient
 Coriander;ambient
 Mixed Herbs;ambient
+Rosemary & Red Onion Sausages;frozen
+Cannellini Beans;ambient
+Butternut Squash;fresh

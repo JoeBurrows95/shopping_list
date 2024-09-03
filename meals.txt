@@ -1,3 +1,4 @@
 Chippy Tea;Potatoes-500-g;This Isn't Sausages-6-n;Baked Beans-1-n;Mushy Peas-1-n;Curry Sauce-30-g;
 Cheesy Pasta;GF Pasta-250-g;Primula-2-n;Fiery Cheese Blend-30-g;Grated Cheese-30-g;
 Lentil Curry;Red Lentils-400-g;Stock Cube-1-n;Chopped Tomatoes-2-n;Frozen Onion-100-g;Frozen Sweetcorn-100-g;Lazy Garlic-1-tsp;Garam Masala-1-tsp;Turmeric-1-tsp;Cumin-2-tsp;Curry Powder-1-tsp;Paprika-1-tsp;Coriander-1-tsp;Mixed Herbs-1-tsp;
+Sausage & Bean Casserole;Rosemary & Red Onion Sausages-6-n;Frozen Onion-100-g;Cannellini Beans-1-n;Butternut Squash-500-g;Chopped Tomatoes-1-n;Lazy Garlic-2-tsp;Stock Cube-1-n;
