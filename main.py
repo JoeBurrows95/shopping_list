@@ -15,11 +15,18 @@ def main():
 """
 
     # Options for how user can edit the shopping list if they've opted to do so
-    edit_options = """How would you like to edit the shopping list?
+    full_list_edit_options = """How would you like to edit the shopping list?
 1. Add an item
 2. Edit the quantity of an item
 3. Remove an item
 4. Swap an item
+
+0. Return to main menu
+
+"""
+
+    empty_list_edit_options = """How would you like to edit the shopping list?
+1. Add an item
 
 0. Return to main menu
 
@@ -95,11 +102,11 @@ to your shopping list.\n")
 
 
         # Edit shopping list
-        # ADD ABILITY TO GO BACK IF SELECTING THIS WAS AN ERROR
         elif option_selection == 5:
             
             while True:
                 try:
+                    edit_options = functions.dynamic_edit_options(empty_list_edit_options, full_list_edit_options, shopping_list)
                     edit_choice = int(input(edit_options))
                     if edit_choice < 5:
                         break

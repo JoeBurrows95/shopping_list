@@ -404,3 +404,11 @@ def email_shopping_list(email_address, shopping_list, text_file):
     s.login('joebcoding@gmail.com', 'xbhf qyls qwoh wlzq')  # Login to your Gmail account
     s.send_message(msg)
     s.quit()
+
+
+def dynamic_edit_options(empty_options, full_options, shopping_list):
+    
+    if not shopping_list:
+        return empty_options
+    else:
+        return full_options
