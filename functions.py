@@ -406,14 +406,6 @@ def email_shopping_list(email_address, shopping_list, text_file):
     s.quit()
 
 
-def original_dynamic_edit_options(empty_options, full_options, shopping_list):
-    
-    if not shopping_list:
-        return empty_options
-    else:
-        return full_options
-    
-
 def dynamic_edit_options(all_options, shopping_list):
 
     edit_options = ""
