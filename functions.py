@@ -406,9 +406,24 @@ def email_shopping_list(email_address, shopping_list, text_file):
     s.quit()
 
 
-def dynamic_edit_options(empty_options, full_options, shopping_list):
+def original_dynamic_edit_options(empty_options, full_options, shopping_list):
     
     if not shopping_list:
         return empty_options
     else:
         return full_options
+    
+
+def dynamic_edit_options(all_options, shopping_list):
+
+    edit_options = ""
+
+    if not shopping_list:
+        for value in all_options["empty"]:
+            edit_options += f"{value}\n"
+
+    else:
+        for value in all_options["not empty"]:
+            edit_options += f"{value}\n"
+
+    return(edit_options)
