@@ -411,11 +411,17 @@ def dynamic_edit_options(all_options, shopping_list):
     edit_options = ""
 
     if not shopping_list:
-        for value in all_options["empty"]:
-            edit_options += f"{value}\n"
+        for index, value in enumerate(all_options["empty"], 1):
+            if value == all_options["empty"][-1]:
+                edit_options += f"\n0. {value}\n"
+            else:
+                edit_options += f"{index}. {value}\n"
 
     else:
-        for value in all_options["not empty"]:
-            edit_options += f"{value}\n"
+        for index, value in enumerate(all_options["not empty"], 1):
+            if value == all_options["not empty"][-1]:
+                edit_options += f"\n0. {value}\n"
+            else:
+                edit_options += f"{index}. {value}\n"
 
     return(edit_options)

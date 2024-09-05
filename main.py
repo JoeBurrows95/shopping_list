@@ -15,8 +15,8 @@ def main():
 """
     # All edit options for the user to choose from when they opt to edit their shopping list
     all_edit_options = {
-        "empty" : ["1. Add an item", "\n0. Return to main menu"],
-        "not empty" : ["1. Add an item", "2. Edit the quantity of an item", "3. Remove an item", "4. Swap an item", "\n0. Return to main menu"]
+        "empty" : ["Add an item", "Return to main menu"],
+        "not empty" : ["Add an item", "Edit the quantity of an item", "Remove an item", "Swap an item", "Return to main menu"]
     }
     
     # Shopping list starts as an empty list, ready to be added to by the user
