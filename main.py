@@ -133,16 +133,19 @@ to your shopping list.\n")
 
                 while True:
                     email_address = input("Please enter the email address you want to send\
-your shopping list to:\n")
+ your shopping list to:\n")
                     
                     confirmation = input(f"Do you want the email to be sent to\
- '{email_address}'? Enter '1' if you do, and anything else to re-enter:\n")
+ '{email_address}'? Enter '1' if you do, '0' to return to main menu, and anything else \
+to re-enter:\n")
                     
                     if confirmation == '1':
+                        functions.email_shopping_list(email_address, shopping_list, 'ingredients.txt')
+                        print("\nYour shopping list has now been emailed to you.\n")
+                        break
+                    elif confirmation == '0':
                         break
 
-                functions.email_shopping_list(email_address, shopping_list, 'ingredients.txt')
-                print("\nYour shopping list has now been emailed to you.\n")
 
             else:
                 print("\nYour shopping list is empty so can't be emailed yet.\n")
