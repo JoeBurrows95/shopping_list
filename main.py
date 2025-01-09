@@ -96,13 +96,21 @@ to your shopping list.\n")
                     # edit_options = functions.dynamic_edit_options(empty_list_edit_options, full_list_edit_options, shopping_list)
                     edit_options = functions.dynamic_edit_options(all_edit_options, shopping_list)
                     edit_choice = int(input(edit_options))
-                    if edit_choice < 5:
-                        break
+                    if shopping_list:
+                        if edit_choice < 5:
+                            break
+                        else:
+                            print("\nYou didn't enter a valid option.\n")
                     else:
-                        print("\nYou didn't enter a valid option.\n")
+                        if edit_choice < 2:
+                            break
+                        else:
+                            print("\nYou didn't enter a valid option.\n")                        
                 except ValueError:
                     print("\nPlease enter a numeric value\n")
                     continue
+            
+            
             
             if edit_choice == 1:
                 shopping_list = functions.add_shopping_list_item(shopping_list)
